@@ -1,6 +1,6 @@
 {
   "name": "xtreme-admin-angular",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -34,7 +34,7 @@
     "angular-file-uploader": "^5.0.2",
     "angular-notifier": "^4.1.1",
     "bootstrap": "^4.3.1",
-    "c3": "^0.4.23",
+    "c3": "^0.4.24",
     "chart.js": "^2.8.0",
     "chartist": "^0.11.2",
     "core-js": "^2.6.9",

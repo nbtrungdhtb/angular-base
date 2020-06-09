@@ -61,10 +61,6 @@ This is for the horizontal layout
                         display: block;
                     }
                 }
-                .sidebar-item {
-                    flex: 1 1 0;
-                }
-
             }
         }
         &[data-sidebar-position="fixed"]{
@@ -108,7 +104,6 @@ This is for the horizontal layout
                 width: 100%;
                 .sidebar-item {
                     position: relative;
-                    width: auto;
                 }
                 >.sidebar-item {
                     border-right: 1px solid rgba(0, 0, 0, 0.1);

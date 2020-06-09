@@ -41,7 +41,7 @@ testem.log
 Thumbs.db
 
 # File
-src/environments/
+src/environments/**
 package-lock.json
 
 # Recycle Bin used on file shares

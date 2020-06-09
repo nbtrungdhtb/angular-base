@@ -9,7 +9,9 @@ const routes: Routes = [
         component: DashboardComponent,
         data: {
             title: 'Dashboard',
-            urls: []
+            urls: [
+                { title: 'Dashboard', url: '/overview' },
+            ]
         }
     }
 ];
