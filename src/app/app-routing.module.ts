@@ -1,21 +1,14 @@
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-
 import {FullComponent} from './layouts/full/full.component';
 import {BlankComponent} from './layouts/blank/blank.component';
-import {NgModule} from '@angular/core';
 
 export const routes: Routes = [
     {
         path: '',
         component: FullComponent,
         children: [
-            // {
-            //     path: '', component: FullComponent,
-            //     pathMatch: 'full',
-            //     data: {
-            //         title: 'Overview'
-            //     }
-            // },
+            { path: '', redirectTo: '/overview', pathMatch: 'full' },
             {
                 path: 'overview',
                 loadChildren: () => import('./module/overview/overview.module').then(m => m.OverviewModule)

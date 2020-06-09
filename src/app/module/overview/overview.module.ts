@@ -13,7 +13,8 @@ import {OverviewRoutingModule} from './overview-routing.module';
         DashboardComponent
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        OverviewRoutingModule
     ]
 })
 export class OverviewModule {
