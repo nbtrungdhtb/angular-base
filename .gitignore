@@ -7,6 +7,8 @@
 
 # dependencies
 /node_modules
+dist/
+build/
 
 # IDEs and editors
 /.idea
@@ -39,5 +41,8 @@ testem.log
 Thumbs.db
 
 # File
-src/environments/*
+src/environments/
 package-lock.json
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
