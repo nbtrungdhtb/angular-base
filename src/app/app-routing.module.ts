@@ -9,6 +9,7 @@ export const routes: Routes = [
         path: '',
         component: FullComponent,
         canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
         children: [
             { path: '', redirectTo: '/overview', pathMatch: 'full' },
             {
@@ -30,7 +31,7 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: '/authentication/404'
+        redirectTo: '/auth/404'
     }
 ];
 @NgModule({
