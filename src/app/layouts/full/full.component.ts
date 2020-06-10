@@ -32,7 +32,7 @@ export class FullComponent implements OnInit {
 
     ngOnInit() {
         if (this.router.url === '/') {
-            this.router.navigate(['/dashboard/classic']);
+            this.router.navigate(['/']);
         }
         this.defaultSidebar = this.options.sidebartype;
         this.handleSidebar();

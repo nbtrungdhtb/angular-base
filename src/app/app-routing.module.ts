@@ -11,9 +11,9 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         canActivateChild: [AuthGuard],
         children: [
-            { path: '', redirectTo: '/overview', pathMatch: 'full' },
+            { path: '', redirectTo: '/', pathMatch: 'full' },
             {
-                path: 'overview',
+                path: '',
                 loadChildren: () => import('./module/overview/overview.module').then(m => m.OverviewModule)
             }
         ]
