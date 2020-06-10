@@ -25,9 +25,9 @@ export class FullComponent implements OnInit {
         sidebarpos: 'absolute', // two possible values: fixed, absolute
         headerpos: 'absolute', // two possible values: fixed, absolute
         boxed: 'boxed', // two possible values: full, boxed
-        navbarbg: 'skin1', // six possible values: skin(1/2/3/4/5/6)
+        navbarbg: 'skin3', // six possible values: skin(1/2/3/4/5/6)
         sidebarbg: 'skin6', // six possible values: skin(1/2/3/4/5/6)
-        logobg: 'skin1' // six possible values: skin(1/2/3/4/5/6)
+        logobg: 'skin3' // six possible values: skin(1/2/3/4/5/6)
     };
 
     ngOnInit() {

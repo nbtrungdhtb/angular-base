@@ -1,18 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 
 import {environment} from '../../environments/environment';
-import {Observable} from 'rxjs';
-
-interface ResponseData {
-    status_code: number;
-    message: string;
-    data: any;
-    total: any;
-}
 
 interface LoginResponseData {
-    status_code: number;
+    status: boolean;
     message: string;
     token: any;
 }

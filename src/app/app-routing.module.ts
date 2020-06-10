@@ -3,6 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {FullComponent} from './layouts/full/full.component';
 import {BlankComponent} from './layouts/blank/blank.component';
 import {AuthGuard} from './auth/auth.guard';
+import {AuthService} from "./auth/auth.service";
+import {BreadcrumbComponent} from "./shared/breadcrumb/breadcrumb.component";
 
 export const routes: Routes = [
     {

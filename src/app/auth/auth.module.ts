@@ -4,6 +4,8 @@ import {RouterModule} from '@angular/router';
 import {AuthRoutes} from './auth.routing';
 import {LoginComponent} from './login/login.component';
 import {NotfoundComponent} from './404/not-found.component';
+import {AuthService} from './auth.service';
+import {BreadcrumbService} from '../shared/breadcrumb/breadcrumb.service';
 
 
 @NgModule({
@@ -14,6 +16,10 @@ import {NotfoundComponent} from './404/not-found.component';
     imports: [
         CommonModule,
         RouterModule.forChild(AuthRoutes)
+    ],
+    providers: [
+        AuthService,
+        BreadcrumbService
     ]
 })
 export class AuthModule {
