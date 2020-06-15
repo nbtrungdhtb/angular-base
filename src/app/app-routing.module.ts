@@ -3,15 +3,14 @@ import {RouterModule, Routes} from '@angular/router';
 import {FullComponent} from './layouts/full/full.component';
 import {BlankComponent} from './layouts/blank/blank.component';
 import {AuthGuard} from './auth/auth.guard';
-import {AuthService} from "./auth/auth.service";
-import {BreadcrumbComponent} from "./shared/breadcrumb/breadcrumb.component";
+import {AuthService} from './auth/auth.service';
+import {BreadcrumbComponent} from './shared/breadcrumb/breadcrumb.component';
 
 export const routes: Routes = [
     {
         path: '',
         component: FullComponent,
         canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
         children: [
             { path: '', redirectTo: '/overview', pathMatch: 'full' },
             {
@@ -33,7 +32,7 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: '/auth/404'
+        redirectTo: '/authentication/404'
     }
 ];
 @NgModule({

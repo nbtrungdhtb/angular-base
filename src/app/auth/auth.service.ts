@@ -16,6 +16,7 @@ interface LoginResponseData {
 
 
 export class AuthService {
+
     private loggedInStatus = !!localStorage.getItem('at_jwt');
 
     constructor(private http: HttpClient) {
