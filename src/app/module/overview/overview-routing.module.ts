@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {DashboardComponent} from './dashboard/dashboard.component';
+import {OverviewComponent} from './overview.component';
 
 
 const routes: Routes = [
     {
         path: '',
-        component: DashboardComponent,
+        component: OverviewComponent,
         data: {
-            title: 'Dashboard',
+            title: 'Overview',
             urls: [
-                { title: 'Dashboard', url: '/overview' },
+                { title: 'Overview', url: '/' },
             ]
         }
     }

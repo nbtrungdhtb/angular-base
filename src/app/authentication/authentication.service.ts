@@ -15,9 +15,11 @@ interface LoginResponseData {
 })
 
 
-export class AuthService {
+export class AuthenticationService {
 
-    private loggedInStatus = !!localStorage.getItem('at_jwt');
+    private loggedInStatus = !!localStorage.getItem('jwt');
+    private currentUserSubject: BehaviorSubject<User>;
+    public currentUser: Observable<User>;
 
     constructor(private http: HttpClient) {
     }
@@ -27,13 +29,13 @@ export class AuthService {
     }
 
     setJwtToken(token) {
-        localStorage.setItem('at_jwt', token);
+        localStorage.setItem('jwt', token);
         this.loggedInStatus = true;
     }
 
     getAuthorizationToken(): string {
-        if (localStorage.hasOwnProperty('at_jwt')) {
-            return localStorage.getItem('at_jwt');
+        if (localStorage.hasOwnProperty('jwt')) {
+            return localStorage.getItem('jwt');
         }
         return '';
     }

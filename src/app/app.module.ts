@@ -21,8 +21,9 @@ import {SpinnerComponent} from './shared/spinner.component';
 
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
-import {AuthGuard} from './auth/auth.guard';
-import {AuthInterceptor} from "./_helper/auth.interceptor";
+import {SharedModule} from './shared/shared.module';
+import {AuthenticationGuard} from './authentication/authentication.guard';
+import {AuthenticationInterceptor} from './_helper/authentication.interceptor';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -48,18 +49,19 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         HttpClientModule,
         NgbModule,
         PerfectScrollbarModule,
-        AppRoutingModule
+        AppRoutingModule,
+        SharedModule
     ],
     providers: [
-        AuthGuard,
+        AuthenticationGuard,
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
+            useClass: AuthenticationInterceptor,
             multi: true
         },
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
+            useClass: AuthenticationInterceptor,
             multi: true
         }
     ],

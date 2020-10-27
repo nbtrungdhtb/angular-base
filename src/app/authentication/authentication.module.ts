@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
-import {AuthRoutes} from './auth.routing';
+import {AuthRoutes} from './authentication.routing';
 import {LoginComponent} from './login/login.component';
 import {NotfoundComponent} from './404/not-found.component';
-import {AuthService} from './auth.service';
+import {AuthenticationService} from './authentication.service';
 import {BreadcrumbService} from '../shared/breadcrumb/breadcrumb.service';
 
 
@@ -18,9 +18,9 @@ import {BreadcrumbService} from '../shared/breadcrumb/breadcrumb.service';
         RouterModule.forChild(AuthRoutes)
     ],
     providers: [
-        AuthService,
+        AuthenticationService,
         BreadcrumbService
     ]
 })
-export class AuthModule {
+export class AuthenticationModule {
 }

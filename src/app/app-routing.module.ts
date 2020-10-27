@@ -2,17 +2,21 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {FullComponent} from './layouts/full/full.component';
 import {BlankComponent} from './layouts/blank/blank.component';
-import {AuthGuard} from './auth/auth.guard';
-import {AuthService} from './auth/auth.service';
+import {AuthenticationGuard} from './authentication/authentication.guard';
+import {AuthenticationService} from './authentication/authentication.service';
 import {BreadcrumbComponent} from './shared/breadcrumb/breadcrumb.component';
 
 export const routes: Routes = [
     {
         path: '',
         component: FullComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthenticationGuard],
         children: [
-            { path: '', redirectTo: '/overview', pathMatch: 'full' },
+            {
+                path: '',
+                redirectTo: '/overview',
+                pathMatch: 'full'
+            },
             {
                 path: 'overview',
                 loadChildren: () => import('./module/overview/overview.module').then(m => m.OverviewModule)
@@ -24,9 +28,9 @@ export const routes: Routes = [
         component: BlankComponent,
         children: [
             {
-                path: 'auth',
+                path: 'authentication',
                 loadChildren:
-                    () => import('./auth/auth.module').then(m => m.AuthModule)
+                    () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
             }
         ]
     },
