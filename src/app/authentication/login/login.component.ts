@@ -4,7 +4,22 @@ import {AuthenticationService} from '../authentication.service';
 
 @Component({
     selector: 'app-login',
-    templateUrl: './login.component.html'
+    templateUrl: './login.component.html',
+    styles: [`
+        .login-container {
+            background:url(../../../assets/images/background/bg-login.jpg) no-repeat center center;
+            background-size: cover;
+        }
+        .btn-login {
+            background: -webkit-linear-gradient(right, #00dbde, #fc00ff);
+            border: none;
+            border-radius: 30px;
+            transition: all 0.4s;
+        }
+        .btn-login:hover {
+            -webkit-box-shadow: 0 5px 30px 0 rgba(3, 216, 222, 0.2);
+        }
+    `]
 })
 export class LoginComponent {
     username: string = null;
