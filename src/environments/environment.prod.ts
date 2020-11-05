@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  auth_endpoint: '/',
+  sentry_enable: false
 };
