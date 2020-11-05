@@ -19,8 +19,7 @@ export class AuthenticationService {
 
     private loggedInStatus = !!localStorage.getItem('jwt');
 
-    constructor(private http: HttpClient) {
-    }
+    constructor(private http: HttpClient) {}
 
     get isLoggedIn() {
         return this.loggedInStatus.toString();
@@ -42,8 +41,8 @@ export class AuthenticationService {
         return this.http.get<LoginResponseData>(environment.auth_endpoint + '/user/me', {});
     }
 
-    login(username, password) {
-        const payload = JSON.stringify({'username': username, 'password': password});
+    login({username, password}) {
+        const payload = JSON.stringify({username, password});
         return this.http.post<LoginResponseData>(environment.auth_endpoint + '/user/login', payload);
     }
 

@@ -7,17 +7,23 @@ import {
     RouterStateSnapshot,
 } from '@angular/router';
 import {Observable} from 'rxjs';
+import {AuthenticationService} from './authentication.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthenticationGuard implements CanActivate, CanActivateChild {
-    constructor(private router: Router) {
-    }
+    constructor(
+        private router: Router,
+        private authenticationService: AuthenticationService
+    ) {}
 
-    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    canActivate(
+        next: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+    ): Observable<boolean> | Promise<boolean> | boolean {
         console.log('guard');
-        if ('a' === 'a') {
+        if (this.authenticationService.isLoggedIn === 'true') {
             return true;
         }
 
@@ -33,8 +39,15 @@ export class AuthenticationGuard implements CanActivate, CanActivateChild {
         }));*/
     }
 
-    canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        return true;
+    canActivateChild(
+        next: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+    ): Observable<boolean> | Promise<boolean> | boolean {
+        if (this.authenticationService.isLoggedIn === 'true') {
+            return true;
+        }
+        this.router.navigate(['/authentication/login']).then();
+        return false;
     }
 
 

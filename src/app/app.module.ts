@@ -3,7 +3,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
     CommonModule
 } from '@angular/common';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
@@ -20,17 +20,14 @@ import {AppComponent} from './app.component';
 import {SpinnerComponent} from './shared/spinner.component';
 
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
-import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 import {SharedModule} from './shared/shared.module';
 import {AuthenticationGuard} from './authentication/authentication.guard';
-import {AuthenticationInterceptor} from './_helper/authentication.interceptor';
+import {TokenInterceptor} from './_helper';
+import {AuthenticationService} from './authentication/authentication.service';
+import {BreadcrumbService} from './shared/breadcrumb/breadcrumb.service';
+import {ErrorInterceptor, SentryErrorHandler} from './_helper';
+import {environment} from '../environments/environment';
 
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-    suppressScrollX: true,
-    wheelSpeed: 1,
-    wheelPropagation: true,
-    minScrollbarLength: 20
-};
 
 @NgModule({
     declarations: [
@@ -53,17 +50,20 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         SharedModule
     ],
     providers: [
+        AuthenticationService,
+        BreadcrumbService,
         AuthenticationGuard,
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: AuthenticationInterceptor,
+            useClass: TokenInterceptor,
             multi: true
         },
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: AuthenticationInterceptor,
+            useClass: ErrorInterceptor,
             multi: true
-        }
+        },
+        environment['sentry_enable'] ? {provide: ErrorHandler, useClass: SentryErrorHandler} : [],
     ],
     bootstrap: [AppComponent]
 })

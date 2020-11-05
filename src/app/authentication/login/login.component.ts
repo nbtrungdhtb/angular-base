@@ -7,7 +7,7 @@ import {AuthenticationService} from '../authentication.service';
     templateUrl: './login.component.html'
 })
 export class LoginComponent {
-    userName: string = null;
+    username: string = null;
     password: string = null;
     errorMessage: string = null;
     isLoading = false;
@@ -31,11 +31,30 @@ export class LoginComponent {
     }
     login = () => {
         if (!this.isLoading) {
-            if (this.userName && this.password) {
+            if (this.username && this.password) {
                 this.isLoading = true;
+                const payload = {
+                    username: 'admin',
+                    password: 'admin'
+                };
+                this.authenticationService.login(payload).subscribe(
+                    (response) => {
+                    this.isLoading = false;
+                    if (response.status) {
+                        this.authenticationService.setJwtToken(response.token);
+                        window.location.reload();
+                    } else {
+                        this.errorMessage = 'Thông tin tài khoản hoặc mật khẩu không chính xác';
+                    }
+                },
+                    () => {
+                        this.isLoading = false;
+                        alert('Có lỗi bất ngờ xảy ra');
+                    }
+                );
+            } else {
+                this.errorMessage = 'Bạn cần điền đầy đủ thông tin';
             }
-        } else {
-
         }
     }
 }

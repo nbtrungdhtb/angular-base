@@ -26,7 +26,7 @@
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="customCheck1">
                                     <label class="custom-control-label" for="customCheck1">Remember me</label>
-                                    <a (click)="showRecoverForm()" href="javascript:void(0)" id="to-recover" class="text-dark float-right"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a>
+                                    <a href="javascript:void(0)" id="to-recover" class="text-dark float-right"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div id="recoverform" [ngClass]="{'d-block': recoverform}">
+        <div id="recoverform">
             <div class="logo">
                 <span class="db"><img src="assets/images/logo-icon.png" alt="logo" /></span>
                 <h5 class="font-medium m-b-20">Recover Password</h5>
