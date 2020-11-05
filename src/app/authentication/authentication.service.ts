@@ -18,8 +18,6 @@ interface LoginResponseData {
 export class AuthenticationService {
 
     private loggedInStatus = !!localStorage.getItem('jwt');
-    private currentUserSubject: BehaviorSubject<User>;
-    public currentUser: Observable<User>;
 
     constructor(private http: HttpClient) {
     }
