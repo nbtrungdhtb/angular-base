@@ -27,7 +27,7 @@ export class AuthenticationGuard implements CanActivate, CanActivateChild {
             return true;
         }
 
-        this.router.navigate(['auth/login']);
+        this.router.navigate(['authentication/login']).then();
         return false;
         /*return this.user.isLoggedIn().pipe(map(res => {
           if (res.status) {
