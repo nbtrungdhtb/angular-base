@@ -6,6 +6,8 @@ import {LoginComponent} from './login/login.component';
 import {NotfoundComponent} from './404/not-found.component';
 import {AuthenticationService} from './authentication.service';
 import {BreadcrumbService} from '../shared/breadcrumb/breadcrumb.service';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import {BreadcrumbService} from '../shared/breadcrumb/breadcrumb.service';
     ],
     imports: [
         CommonModule,
-        RouterModule.forChild(AuthRoutes)
+        RouterModule.forChild(AuthRoutes),
+        ReactiveFormsModule,
+        SharedModule
     ],
     providers: [
         AuthenticationService,

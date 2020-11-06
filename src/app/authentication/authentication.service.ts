@@ -1,13 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-
 import {environment} from '../../environments/environment';
-
-interface LoginResponseData {
-    status: boolean;
-    message: string;
-    token: any;
-}
 
 
 @Injectable({
@@ -21,34 +14,32 @@ export class AuthenticationService {
 
     constructor(private http: HttpClient) {}
 
-    get isLoggedIn() {
-        return this.loggedInStatus.toString();
-    }
+    get isLoggedIn() { return this.loggedInStatus.toString(); }
 
-    setJwtToken(token) {
+    setJwtToken = (token) => {
         localStorage.setItem('jwt', token);
         this.loggedInStatus = true;
     }
 
-    getAuthorizationToken(): string {
+    getAuthorizationToken = (): string => {
         if (localStorage.hasOwnProperty('jwt')) {
             return localStorage.getItem('jwt');
         }
-        return '';
+        return null;
     }
 
-    getUser() {
+    getUser = (): object => {
         return this.http.get<LoginResponseData>(environment.auth_endpoint + '/user/me', {});
     }
 
-    login({username, password}) {
+    login = ({username, password}) => {
         const payload = JSON.stringify({username, password});
         return this.http.post<LoginResponseData>(environment.auth_endpoint + '/user/login', payload);
     }
 
-    logout() {
+    logout = (): void => {
         this.http.get(environment.auth_endpoint + '/user/logout');
-        localStorage.removeItem('at_jwt');
+        localStorage.removeItem('jwt');
         this.loggedInStatus = false;
     }
 }

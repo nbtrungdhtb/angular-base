@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../authentication.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ValidationService} from '../../shared/control-message/validation.service';
 
 @Component({
     selector: 'app-login',
@@ -27,9 +29,12 @@ export class LoginComponent {
     errorMessage: string = null;
     isLoading = false;
 
+    loginForm: FormGroup;
+
     constructor(
         private route: ActivatedRoute,
         private router: Router,
+        private formBuilder: FormBuilder,
         private authenticationService: AuthenticationService
     ) {
         this.route.queryParams
@@ -43,7 +48,19 @@ export class LoginComponent {
                     }
                 }
             });
+        this.createForm();
     }
+
+    get formControls() { return this.loginForm.controls; }
+
+    createForm(): void {
+        this.loginForm = this.formBuilder.group({
+            username: ['', [Validators.required, Validators.minLength(3)]],
+            password: ['', [Validators.required, ValidationService.passwordValidator]],
+            remember: [true, Validators.required]
+        });
+    }
+
     login = () => {
         if (!this.isLoading) {
             if (this.username && this.password) {

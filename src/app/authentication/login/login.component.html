@@ -7,23 +7,31 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <form class="form-horizontal m-t-20" id="loginform">
+                    <form class="form-horizontal m-t-20" id="loginForm" [formGroup]="loginForm">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="username"><i class="ti-user"></i></span>
+                                <span class="input-group-text" id="username">
+                                    <i class="ti-user"></i>
+                                </span>
                             </div>
-                            <input type="text" class="form-control form-control-lg" placeholder="Username" aria-label="Username" aria-describedby="username">
+                            <input type="text" class="form-control form-control-lg" placeholder="Username" autocomplete="false"
+                                   aria-label="Username" aria-describedby="username" formControlName="username">
+                            <app-control-message [control]="loginForm.get('username')"></app-control-message>
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="password"><i class="ti-pencil"></i></span>
+                                <span class="input-group-text" id="password">
+                                    <i class="ti-pencil"></i>
+                                </span>
                             </div>
-                            <input type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="password">
+                            <input type="password" class="form-control form-control-lg" placeholder="Password"
+                                   aria-label="Password" aria-describedby="password" formControlName="password">
+                            <app-control-message [control]="loginForm.get('password')"></app-control-message>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="remember">
+                                    <input type="checkbox" class="custom-control-input" id="remember" formControlName="remember">
                                     <label class="custom-control-label" for="remember">Remember me</label>
                                     <a href="javascript:void(0)" id="to-recover" class="text-dark float-right">
                                         <i class="fa fa-lock m-r-5"></i> Forgot password?
@@ -33,7 +41,7 @@
                         </div>
                         <div class="form-group text-center">
                             <div class="col-xs-12 p-b-20">
-                                <button class="btn btn-block btn-lg btn-info btn-login" type="submit">Log In</button>
+                                <button class="btn btn-block btn-lg btn-info btn-login" type="submit" [disabled]="!loginForm.valid">Log In</button>
                             </div>
                         </div>
                         <div class="row">
