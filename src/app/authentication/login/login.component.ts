@@ -7,7 +7,7 @@ import {AuthenticationService} from '../authentication.service';
     templateUrl: './login.component.html',
     styles: [`
         .login-container {
-            background:url(../../../assets/images/background/bg-login.jpg) no-repeat center center;
+            background:url(../../../assets/images/background/profile-bg.jpg) no-repeat center center;
             background-size: cover;
         }
         .btn-login {
