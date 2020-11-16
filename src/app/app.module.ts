@@ -5,7 +5,7 @@ import {
 } from '@angular/common';
 import {ErrorHandler, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -27,6 +27,8 @@ import {AuthenticationService} from './authentication/authentication.service';
 import {BreadcrumbService} from './shared/breadcrumb/breadcrumb.service';
 import {ErrorInterceptor, SentryErrorHandler} from './_helper';
 import {environment} from '../environments/environment';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 
 @NgModule({
@@ -47,7 +49,14 @@ import {environment} from '../environments/environment';
         NgbModule,
         PerfectScrollbarModule,
         AppRoutingModule,
-        SharedModule
+        SharedModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
     ],
     providers: [
         AuthenticationService,
@@ -68,4 +77,8 @@ import {environment} from '../environments/environment';
     bootstrap: [AppComponent]
 })
 export class AppModule {
+}
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
 }

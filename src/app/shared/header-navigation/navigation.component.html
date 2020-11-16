@@ -8,13 +8,16 @@
     <li class="nav-item dropdown" ngbDropdown placement="bottom-right">
         <a ngbDropdownToggle class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            <i class="flag-icon flag-icon-us"></i>
+            <i id="item_language_en" class="btn_flag_language flag-icon flag-icon-us"></i>
+            <i id="item_language_vi" class="btn_flag_language flag-icon flag-icon-vn d-none"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" ngbDropdownMenu>
-            <a class="dropdown-item" href="#">
-                <i class="flag-icon flag-icon-us"></i> English</a>
-            <a class="dropdown-item" href="#">
-                <i class="flag-icon flag-icon-vn"></i> Vietnamese</a>
+            <a class="dropdown-item" (click)="useLanguage('en')">
+                <i class="flag-icon flag-icon-us"></i> English
+            </a>
+            <a class="dropdown-item" (click)="useLanguage('vi')">
+                <i class="flag-icon flag-icon-vn"></i> Vietnamese
+            </a>
         </div>
     </li>
     <!-- ============================================================== -->

@@ -8,18 +8,22 @@ import {AuthenticationService} from './authentication.service';
 import {BreadcrumbService} from '../shared/breadcrumb/breadcrumb.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
     declarations: [
         LoginComponent,
-        NotfoundComponent
+        NotfoundComponent,
+        SignUpComponent
     ],
     imports: [
         CommonModule,
         RouterModule.forChild(AuthRoutes),
         ReactiveFormsModule,
-        SharedModule
+        SharedModule,
+        TranslateModule
     ],
     providers: [
         AuthenticationService,

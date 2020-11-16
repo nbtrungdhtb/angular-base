@@ -1,0 +1,11 @@
+{
+	"common": {
+		"address": "Địa chỉ",
+		"password": "Mật khẩu",
+		"remember": "Ghi nhớ",
+		"username": "Tên đăng nhập"
+	},
+	"user": {
+		"full_name": "Tên đầy đủ"
+	}
+}

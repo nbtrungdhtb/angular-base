@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {Observable} from 'rxjs';
 
 
 @Injectable({
@@ -29,17 +30,21 @@ export class AuthenticationService {
     }
 
     getUser = (): object => {
-        return this.http.get<LoginResponseData>(environment.auth_endpoint + '/user/me', {});
+        return this.http.get<LoginResponseData>(environment.endpoint + '/user/me', {});
     }
 
-    login = ({username, password}) => {
+    login = ({username, password}): Observable<LoginResponseData> => {
         const payload = JSON.stringify({username, password});
-        return this.http.post<LoginResponseData>(environment.auth_endpoint + '/user/login', payload);
+        return this.http.post<LoginResponseData>(environment.endpoint + '/user/login', payload);
     }
 
     logout = (): void => {
-        this.http.get(environment.auth_endpoint + '/user/logout');
+        this.http.get(environment.endpoint + '/user/logout');
         localStorage.removeItem('jwt');
         this.loggedInStatus = false;
+    }
+
+    createUser = (data): Observable<ResponseDataRegister> => {
+        return this.http.post<ResponseDataRegister>(environment.endpoint + '/user/register', JSON.stringify(data))
     }
 }

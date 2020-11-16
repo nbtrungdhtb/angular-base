@@ -1,0 +1,11 @@
+{
+	"common": {
+		"address": "address",
+		"password": "Password",
+		"remember": "remember",
+		"username": "Username"
+	},
+	"user": {
+		"full_name": "Full name"
+	}
+}

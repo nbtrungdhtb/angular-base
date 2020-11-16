@@ -24,8 +24,6 @@ import {ValidationService} from '../../shared/control-message/validation.service
     `]
 })
 export class LoginComponent {
-    username: string = null;
-    password: string = null;
     errorMessage: string = null;
     isLoading = false;
 
@@ -51,8 +49,6 @@ export class LoginComponent {
         this.createForm();
     }
 
-    get formControls() { return this.loginForm.controls; }
-
     createForm(): void {
         this.loginForm = this.formBuilder.group({
             username: ['', [Validators.required, Validators.minLength(3)]],
@@ -63,11 +59,11 @@ export class LoginComponent {
 
     login = () => {
         if (!this.isLoading) {
-            if (this.username && this.password) {
+            if (this.loginForm.dirty && this.loginForm.valid) {
                 this.isLoading = true;
                 const payload = {
-                    username: 'admin',
-                    password: 'admin'
+                    username: this.loginForm.value.username,
+                    password: this.loginForm.value.password
                 };
                 this.authenticationService.login(payload).subscribe(
                     (response) => {
