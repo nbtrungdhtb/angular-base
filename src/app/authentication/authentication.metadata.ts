@@ -1,11 +1,11 @@
 interface LoginResponseData {
-    status: boolean;
+    success: boolean;
     message?: string;
     token: any;
 }
 
 interface ResponseDataRegister {
-    status: boolean;
+    success: boolean;
     message: string;
     data?: object;
 }

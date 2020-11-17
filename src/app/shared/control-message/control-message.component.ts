@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {AbstractControl, FormControl} from '@angular/forms';
 import {ValidationService} from './validation.service';
 
 
@@ -11,7 +11,7 @@ import {ValidationService} from './validation.service';
 
 export class ControlMessageComponent {
 
-    @Input() control: FormControl;
+    @Input() control: AbstractControl;
 
     constructor() {}
 

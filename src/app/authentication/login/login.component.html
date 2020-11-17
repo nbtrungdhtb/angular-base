@@ -7,7 +7,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <form class="form-horizontal m-t-20" id="loginForm" [formGroup]="loginForm">
+                    <form class="form-horizontal m-t-20" id="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="username">

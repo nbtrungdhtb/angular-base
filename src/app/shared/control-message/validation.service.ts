@@ -33,7 +33,8 @@ export class ValidationService {
     static passwordValidator(control: AbstractControl): { [key: string]: boolean } {
         // {3,100}           - Assert password is between 3 and 100 characters
         // (?=.*[0-9])       - Assert a string has at least one number
-        if (control.value.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{3,100}$/)) {
+        // if (control.value.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{3,100}$/)) {
+        if (control.value.match(/^[a-zA-Z0-9!@#$%^&*]{3,100}$/)) {
             return null;
         } else {
             return {'invalidPassword': true};
