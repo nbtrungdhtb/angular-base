@@ -8,25 +8,29 @@
             <div class="row">
                 <div class="col-12">
                     <form class="form-horizontal m-t-20" id="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="username">
-                                    <i class="ti-user"></i>
-                                </span>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span id="username" class="input-group-text">
+                                        <i class="ti-user"></i>
+                                    </span>
+                                </div>
+                                <input type="text" placeholder="Username" aria-label="username" aria-describedby="username"
+                                       formControlName="username" class="form-control">
                             </div>
-                            <input type="text" class="form-control form-control-lg" placeholder="Username" autocomplete="false"
-                                   aria-label="Username" aria-describedby="username" formControlName="username">
-                            <app-control-message [control]="loginForm.get('username')"></app-control-message>
+                            <app-control-message [control]="loginForm.get('username')" [filedName]="'username'"></app-control-message>
                         </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="password">
-                                    <i class="ti-pencil"></i>
-                                </span>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span id="password" class="input-group-text">
+                                        <i class="ti-lock"></i>
+                                    </span>
+                                </div>
+                                <input type="password" placeholder="Password" aria-label="password" aria-describedby="password"
+                                       formControlName="password" class="form-control">
                             </div>
-                            <input type="password" class="form-control form-control-lg" placeholder="Password"
-                                   aria-label="Password" aria-describedby="password" formControlName="password">
-                            <app-control-message [control]="loginForm.get('password')"></app-control-message>
+                            <app-control-message [control]="loginForm.get('password')" [filedName]="'password'"></app-control-message>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12">

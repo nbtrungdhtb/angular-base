@@ -3,28 +3,14 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../authentication.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ValidationService} from '../../shared/control-message/validation.service';
+import {NotificationService} from '../../service/notification.service';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styles: [`
-        .login-container {
-            background:url(../../../assets/images/background/bg-login.jpg) no-repeat center center;
-            background-size: cover;
-        }
-        .btn-login {
-            background: -webkit-linear-gradient(right, #00dbde, #fc00ff);
-            border: none;
-            border-radius: 30px;
-            transition: all 0.4s;
-        }
-        .btn-login:hover {
-            -webkit-box-shadow: 0 5px 30px 0 rgba(3, 216, 222, 0.2);
-        }
-    `]
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-    errorMessage: string = null;
     isLoading = false;
 
     loginForm: FormGroup;
@@ -33,7 +19,8 @@ export class LoginComponent {
         private route: ActivatedRoute,
         private router: Router,
         private formBuilder: FormBuilder,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private notificationService: NotificationService
     ) {
         this.route.queryParams
             .subscribe(params => {
@@ -49,9 +36,9 @@ export class LoginComponent {
         this.createForm();
     }
 
-    createForm(): void {
+    createForm = (): void => {
         this.loginForm = this.formBuilder.group({
-            username: ['', [Validators.required, Validators.minLength(3)]],
+            username: ['', [Validators.required, Validators.minLength(3), ValidationService.specialCharacters]],
             password: ['', [Validators.required, ValidationService.passwordValidator]],
             remember: [true, Validators.required]
         });
@@ -72,16 +59,14 @@ export class LoginComponent {
                         this.authenticationService.setJwtToken(response.token);
                         window.location.reload();
                     } else {
-                        this.errorMessage = 'Thông tin tài khoản hoặc mật khẩu không chính xác';
+                        this.notificationService.notifyError('Thông tin tài khoản hoặc mật khẩu không chính xác');
                     }
                 },
                     () => {
                         this.isLoading = false;
-                        alert('Có lỗi bất ngờ xảy ra');
+                        this.notificationService.notifyError('Có lỗi bất ngờ xảy ra').then();
                     }
                 );
-            } else {
-                this.errorMessage = 'Bạn cần điền đầy đủ thông tin';
             }
         }
     }

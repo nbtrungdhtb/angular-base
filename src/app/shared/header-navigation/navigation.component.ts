@@ -2,6 +2,8 @@ import {AfterViewInit, Component, EventEmitter, Output} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 import {TranslateService} from '@ngx-translate/core';
+import {AuthenticationService} from '../../authentication/authentication.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -80,6 +82,7 @@ export class NavigationComponent implements AfterViewInit {
     constructor(
         private modalService: NgbModal,
         private translate: TranslateService,
+        private authenticationService: AuthenticationService
     ) {
     }
 
@@ -93,5 +96,10 @@ export class NavigationComponent implements AfterViewInit {
             elements[i].classList.add('d-none');
         }
         document.querySelector('#item_language_' + language).classList.remove('d-none');
+    }
+
+    logout() {
+        this.authenticationService.logout();
+        window.location.reload();
     }
 }

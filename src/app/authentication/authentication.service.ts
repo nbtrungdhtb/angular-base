@@ -45,6 +45,6 @@ export class AuthenticationService {
     }
 
     createUser = (data): Observable<ResponseDataRegister> => {
-        return this.http.post<ResponseDataRegister>(environment.endpoint + '/user/register', JSON.stringify(data))
+        return this.http.post<ResponseDataRegister>(environment.endpoint + '/user/register', JSON.stringify(data));
     }
 }
