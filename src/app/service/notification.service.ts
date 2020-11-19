@@ -16,10 +16,10 @@ export class NotificationService {
             timerProgressBar: true
         });
 
-         return Toast.fire({
-            icon: 'success',
-            title: message || 'Success'
-        });
+         Toast.fire({
+             icon: 'success',
+             title: message || 'Success'
+         }).then();
     }
 
     notifyError(message?: string) {
@@ -31,9 +31,9 @@ export class NotificationService {
             timerProgressBar: true
         });
 
-        return Toast.fire({
+        Toast.fire({
             icon: 'error',
             title: message || 'Please try again'
-        });
+        }).then();
     }
 }

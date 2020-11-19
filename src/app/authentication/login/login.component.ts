@@ -4,6 +4,7 @@ import {AuthenticationService} from '../authentication.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ValidationService} from '../../shared/control-message/validation.service';
 import {NotificationService} from '../../service/notification.service';
+import {environment} from '../../../environments/environment';
 
 @Component({
     selector: 'app-login',
@@ -64,10 +65,20 @@ export class LoginComponent {
                 },
                     () => {
                         this.isLoading = false;
-                        this.notificationService.notifyError('Có lỗi bất ngờ xảy ra').then();
+                        this.notificationService.notifyError('Có lỗi bất ngờ xảy ra');
                     }
                 );
             }
         }
+    }
+
+    onSignIn = (e) => {
+        e.preventDefault();
+        const client_id = environment.google_client_id;
+        const google_redirect_url = environment.google_redirect_url;
+        // Document about prompt param: https://developers.google.com/identity/protocols/OpenIDConnect#re-consent
+
+        // tslint:disable-next-line:max-line-length
+        window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${client_id}&redirect_uri=${google_redirect_url}&scope=email%20profile&prompt=select_account%20consent`;
     }
 }
